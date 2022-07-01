@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'app/theme/style';
+@use 'styles/themes';
+@use 'styles/custom';
+@use 'styles/grid';
+@use 'styles/helpers';
+@use 'styles/plugins';
+
+.apexcharts-menu-item.exportSVG {
+  display: none;
+}
+
+.apexcharts-menu-item.exportPNG {
+  display: none;
+}
+
+.apexcharts-menu-item.exportCSV {
+  color: #cc6e16;
+}
+
+.apexcharts-tooltip {
+  color: #cc6e16;
+}

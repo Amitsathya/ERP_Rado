@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "erp-rado": {
+      "hosting": {
+        "ng-matero": [
+          "erp-rado"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "erp-rado"
+  }
+}

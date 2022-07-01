@@ -1,0 +1,42 @@
+<page-header class="matero-page-header"></page-header>
+<div fxLayout="row wrap" fxLayoutGap="11px grid">
+    <div fxFlex="100" fxFlex.lt-sm="100">
+        <form [formGroup]="attForm" autocomplete="off">
+            <div fxLayout="row wrap" fxLayoutGap="8px grid">
+                <div fxFlex="33.33" fxFlex.lt-sm="100">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Employee</mat-label>
+                        <mat-select formControlName="employee" required>
+                            <mat-option>-- None --</mat-option>
+                            <mat-option *ngFor="let x of empList" [value]="x">
+                              {{x}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="attForm.get('emp')?.invalid">Please select Employee
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="33.33" fxFlex.lt-sm="100" fxLayoutAlign="space-around center" >
+                    <mat-checkbox formControlName="absent"
+                                  [labelPosition]="'before'">
+                        Absent
+                    </mat-checkbox>
+                </div>
+                <div fxFlex="33.33" fxFlex.lt-sm="100">
+                    <button mat-raised-button type="submit" [disabled]="attForm.invalid" color="primary" class="m-t-8" style="margin: 5px;" (click)="save()">{{ 'Save' | translate }}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <span>Attendance recorded for {{this.date}}</span>
+</div>
+<mat-divider></mat-divider>
+<br>
+<div fxLayout="row wrap" fxLayoutGap="11px grid">
+    <div fxFlex="100" fxFlex.lt-sm="100">
+        <mat-card>
+          <mat-card-subtitle>Attendance as of {{this.date}}</mat-card-subtitle>
+          <div id="chart1"></div>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>{{this.data['type'] }} Inventory Item</h2>
+<mat-dialog-content>
+    <form [formGroup]="invForm" autocomplete="off">
+        <div fxLayout="row wrap" fxLayoutGap="8px grid">
+            <div fxFlex="50" fxFlex.lt-sm="100">
+                <mat-form-field style="display: block;" appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" required />
+                    <mat-error *ngIf="invForm.get('name')?.errors?.required">Name is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50" fxFlex.lt-sm="100">
+                <mat-form-field style="display: block;" appearance="outline">
+                    <mat-label>Quantity</mat-label>
+                    <input matInput formControlName="quantity" required />
+                    <mat-error *ngIf="invForm.get('quantity')?.errors?.required">Quantity is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button type="submit" *ngIf="this.data['type']=='Create'" [disabled]="invForm.invalid" color="primary" class="m-t-8" style="margin: 5px;" (click)="createInv()">{{ 'Create' | translate }}</button>
+    <button mat-raised-button type="submit" *ngIf="this.data['type']=='Update'"  [disabled]="invForm.invalid" color="primary" class="m-t-8" style="margin: 5px;" (click)="updateInv()">{{ 'Update' | translate }}</button>
+    <button mat-raised-button color="warn" style="margin: 5px;" (click)="this.dialogRef.close({ event: 'close' });">{{
+        'Close' | translate }}</button>
+</mat-dialog-actions>

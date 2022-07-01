@@ -1,0 +1,46 @@
+{
+  "menu": [
+    {
+      "route": "dashboard",
+      "name": "dashboard",
+      "type": "link",
+      "icon": "dashboard"
+    },
+    {
+      "route": "inventory",
+      "name": "inventory",
+      "type": "link",
+      "icon": "inventory",
+      "permissions": {
+        "only": [
+          "ADMIN",
+          "MANAGER"
+        ]
+      }
+    },
+    {
+      "route": "employee",
+      "name": "employee",
+      "type": "sub",
+      "icon": "payments",
+      "children": [
+        {
+          "route": "payroll",
+          "name": "payroll",
+          "type": "link"
+        },
+        {
+          "route": "attendance",
+          "name": "attendance",
+          "type": "link"
+        }
+      ],
+      "permissions": {
+        "only": [
+          "ADMIN",
+          "MANAGER"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+.mat-dialog-title {
+  padding: 15px 15px 15px 5px;
+  color: #fff;
+  font-size: 24px;
+  background-color: #00a2e0;
+}
+
+.mat-header-cell {
+  min-width: 100px;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  background-color: #00a2e0;
+  border: 1px solid lightgrey;
+}
+
+.mat-cell {
+  min-width: 100px;
+  padding: 0 10px;
+  text-align: center;
+  border: 1px solid lightgrey;
+}
+
+.mat-dialog-content {
+  overflow: hidden;
+}

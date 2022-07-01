@@ -1,0 +1,82 @@
+<h2 mat-dialog-title>{{this.data['type'] }} Employee</h2>
+<mat-dialog-content style="overflow-y: scroll;">
+    <form [formGroup]="payrollForm" autocomplete="off" >
+        <div fxLayout="row wrap" fxLayoutGap="8px grid" >
+            <div fxFlex="50" fxFlex.lt-sm="100">
+                <mat-form-field style="display: block;" appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" required />
+                    <mat-error *ngIf="payrollForm.get('name')?.errors?.required">Name is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50" fxFlex.lt-sm="100">
+                    <mat-checkbox formControlName="active" 
+                    [labelPosition]="'before'">
+                    Active
+                </mat-checkbox>
+            </div>
+            <div fxFlex="50" fxFlex.lt-sm="100" *ngIf="this.data['type']=='Update'">
+                <mat-form-field style="display: block;" appearance="outline">
+                    <mat-label>Present</mat-label>
+                    <input matInput formControlName="present" />
+                </mat-form-field>
+            </div>
+            <div fxFlex="50" fxFlex.lt-sm="100" >
+                <mat-form-field style="display: block;" appearance="outline">
+                    <mat-label>Per Day</mat-label>
+                    <input matInput formControlName="perDay" required (input)="calculate(0)" />
+                    <mat-error *ngIf="payrollForm.get('perDay')?.errors?.required">Per Day is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50" fxFlex.lt-sm="100" *ngIf="this.data['type']=='Update'">
+                <mat-form-field style="display: block;" appearance="outline">
+                    <mat-label>Total</mat-label>
+                    <input matInput formControlName="total"/>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50" fxFlex.lt-sm="100" *ngIf="this.data['type']=='Update'">
+                <mat-form-field style="display: block;" appearance="outline">
+                    <mat-label>Tea</mat-label>
+                    <input matInput formControlName="tea"/>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50" fxFlex.lt-sm="100" *ngIf="this.data['type']=='Update'">
+                <mat-form-field style="display: block;" appearance="outline">
+                    <mat-label>Over Time</mat-label>
+                    <input matInput formControlName="overTime"/>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50" fxFlex.lt-sm="100" *ngIf="this.data['type']=='Update'">
+                <mat-form-field style="display: block;" appearance="outline">
+                    <mat-label>Over Time Amount</mat-label>
+                    <input matInput formControlName="amount" (input)="calculate(1)"/>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50" fxFlex.lt-sm="100" *ngIf="this.data['type']=='Update'">
+                <mat-form-field style="display: block;" appearance="outline">
+                    <mat-label>Total</mat-label>
+                    <input matInput formControlName="ftotal"/>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50" fxFlex.lt-sm="100">
+                <mat-form-field style="display: block;" appearance="outline">
+                    <mat-label>Advance</mat-label>
+                    <input matInput formControlName="advance" (input)="calculate(2)" required />
+                    <mat-error *ngIf="payrollForm.get('advance')?.errors?.required">Advance is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50" fxFlex.lt-sm="100" *ngIf="this.data['type']=='Update'">
+                <mat-form-field style="display: block;" appearance="outline">
+                    <mat-label>Payable</mat-label>
+                    <input matInput formControlName="payable"/>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button type="submit" *ngIf="this.data['type']=='Create'" [disabled]="payrollForm.invalid" color="primary" class="m-t-8" style="margin: 5px;" (click)="createInv()">{{ 'Create' | translate }}</button>
+    <button mat-raised-button type="submit" *ngIf="this.data['type']=='Update'"  [disabled]="payrollForm.invalid" color="primary" class="m-t-8" style="margin: 5px;" (click)="updateInv()">{{ 'Update' | translate }}</button>
+    <button mat-raised-button color="warn" style="margin: 5px;" (click)="this.dialogRef.close({ event: 'close' });">{{
+        'Close' | translate }}</button>
+</mat-dialog-actions>

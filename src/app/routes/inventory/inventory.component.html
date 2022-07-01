@@ -1,0 +1,90 @@
+<page-header class="matero-page-header bg-green-6000"></page-header>
+
+<!-- <form>
+  <mat-form-field class="m-r-8">
+    <input matInput [(ngModel)]="query.q" name="q" placeholder="Query String">
+  </mat-form-field>
+
+  <mat-form-field class="m-r-8">
+    <mat-select [(ngModel)]="query.sort" name="sort" placeholder="Sort">
+      <mat-option>-- None --</mat-option>
+      <mat-option value="stars">stars</mat-option>
+      <mat-option value="forks">forks</mat-option>
+      <mat-option value="updated">updated</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="m-r-8">
+    <mat-select [(ngModel)]="query.order" name="order" placeholder="Order">
+      <mat-option>-- None --</mat-option>
+      <mat-option value="desc">desc</mat-option>
+      <mat-option value="asc">asc</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button class="m-r-8" mat-raised-button color="primary" (click)="search()">Search</button>
+  <button class="m-r-8" mat-raised-button color="warn" (click)="reset()">Reset</button>
+</form>
+
+<mtx-grid [data]="list"
+          [columns]="columns"
+          [length]="total"
+          [loading]="isLoading"
+          [pageOnFront]="false"
+          [pageIndex]="query.page"
+          [pageSize]="query.per_page"
+          [pageSizeOptions]="[5,10,20]"
+          (page)="getNextPage($event)">
+</mtx-grid> -->
+<div fxLayout="row wrap" fxLayoutGap="11px grid">
+  <div  fxFlex="33.33" fxFlex.lt-sm="100" style="margin-bottom: 20px;" >
+      <mat-form-field  style="display: block !important;" >
+          <input matInput placeholder="Search" />
+      </mat-form-field>
+  </div>
+  <div fxFlex="66.33" fxFlex.lt-sm="100" style="margin-bottom: 20px;" fxLayoutAlign="end center">
+    <button mat-raised-button color="primary" style="margin: 5px;" (click)="onView()">Add Item</button>
+  </div>
+</div> 
+<div fxLayout="row wrap" fxLayoutGap="11px grid"> 
+  <div fxFlex="100" fxFlex.lt-sm="100" >                
+    <div class="mat-elevation-z8" style="box-shadow: none;overflow-x: auto">
+        <table mat-table [dataSource]="dataSource" matSort style="width: 100%;">                
+          
+          <ng-container matColumnDef="sno">
+            <th mat-header-cell *matHeaderCellDef > {{ 'S.No' | translate }} </th>
+            <td mat-cell *matCellDef="let element;let i = index"> {{ i+1 }} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Name' | translate }} </th>
+            <td mat-cell *matCellDef="let element"> {{element.data.Name }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Quantity' | translate }} 
+            <td mat-cell *matCellDef="let element"> {{element.data.Quantity  }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> {{ 'Actions' | translate }} </th>
+            <td mat-cell *matCellDef="let element;">
+              <button mat-icon-button color="primary" matTooltip="Edit" matTooltipPosition="left"  (click)="onUpdate(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+        </table> 
+        <div *ngIf="dataSource.filteredData.length === 0 " fxLayout="row" fxLayoutAlign="center">
+            No Records Found!
+          </div>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>              
+  </div>  
+</div>  
+
